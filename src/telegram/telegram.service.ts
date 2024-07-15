@@ -2,8 +2,8 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as TelegramBot from 'node-telegram-bot-api';
 import { UserService } from '../user/user.service';
-import { socialMediaButtons } from './buttons/social-media-buttons';
 import { UserEntity } from '../user/entities/user/user.entity';
+import { getSocialMediaButtons } from './buttons/social-media-buttons';
 
 @Injectable()
 export class TelegramService implements OnModuleInit {
@@ -70,7 +70,7 @@ export class TelegramService implements OnModuleInit {
     const welcomeMessage = `Welcome, ${user.username}! Choose an option below:`;
     this.bot.sendMessage(chatId, welcomeMessage, {
       reply_markup: {
-        inline_keyboard: socialMediaButtons,
+        inline_keyboard: getSocialMediaButtons(user),
       },
     });
   }
