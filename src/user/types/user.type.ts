@@ -10,4 +10,7 @@ export class UserType {
 
   @Field()
   telegramId: string;
+
+  @Field()
+  energy: number;
 }

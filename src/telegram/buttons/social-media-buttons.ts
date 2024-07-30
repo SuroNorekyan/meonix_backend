@@ -1,7 +1,7 @@
 import { UserEntity } from '../../user/entities/user/user.entity';
 
 export const getSocialMediaButtons = (user: UserEntity) => {
-  const gameUrl = `https://b1fd-5-77-205-156.ngrok-free.app/welcome/${user.telegramId}`;
+  const gameUrl = `https://8ea4-37-252-94-240.ngrok-free.app/welcome/${user.telegramId}`;
   return [
     [
       {

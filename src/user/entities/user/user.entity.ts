@@ -1,10 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 @Entity()
 export class UserEntity {
-  @Field()
+  @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -15,4 +15,8 @@ export class UserEntity {
   @Field()
   @Column()
   telegramId: string;
+
+  @Field(() => Int)
+  @Column({ default: 0 })
+  energy: number;
 }
