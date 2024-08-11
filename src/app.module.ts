@@ -9,6 +9,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { appConfig } from './config/app.config';
 import { TelegramService } from './telegram/telegram.service';
+import { TaskModule } from './tasks/task.module';
+import { TaskSeedService } from './tasks/seed/task-seed';
 
 @Module({
   imports: [
@@ -38,8 +40,9 @@ import { TelegramService } from './telegram/telegram.service';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     UserModule,
+    TaskModule, // Add TaskModule here
   ],
   controllers: [AppController],
-  providers: [AppService, TelegramService],
+  providers: [AppService, TelegramService, TaskSeedService],
 })
 export class AppModule {}

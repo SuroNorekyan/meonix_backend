@@ -1,0 +1,51 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type TaskEntity {
+  id: Int!
+  title: String!
+  points: Int!
+  type: TaskTypeEnum!
+  status: TaskStatusEnum!
+}
+
+enum TaskTypeEnum {
+  SOCIAL_MEDIA
+  FRIEND_INVITATION
+}
+
+enum TaskStatusEnum {
+  INCOMPLETE
+  COMPLETE
+}
+
+type UserType {
+  id: Int!
+  username: String!
+  telegramId: String!
+  energy: Float!
+  tasks: [TaskEntity!]!
+}
+
+type Query {
+  findUserTasks(userId: String!): UserType!
+  user(telegramId: String!): UserType!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): UserType!
+  assignTaskToUser(userId: Float!, taskId: Float!): UserType!
+  unassignTaskFromUser(userId: Float!, taskId: Float!): UserType!
+  addEnergy(telegramId: String!, updateEnergyInput: UpdateEnergyInput!): UserType!
+  subtractEnergy(telegramId: String!, updateEnergyInput: UpdateEnergyInput!): UserType!
+}
+
+input CreateUserInput {
+  username: String!
+  telegramId: String!
+}
+
+input UpdateEnergyInput {
+  energy: Int!
+}

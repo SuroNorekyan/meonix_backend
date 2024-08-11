@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { CreateUserInput } from './dto/create-user.input';
 import { UserType } from './types/user.type';
@@ -13,6 +13,27 @@ export class UserResolver {
     @Args('createUserInput') createUserInput: CreateUserInput,
   ): Promise<UserType> {
     return this.userService.create(createUserInput);
+  }
+
+  @Mutation(() => UserType)
+  async assignTaskToUser(
+    @Args('userId') userId: number,
+    @Args('taskId') taskId: number,
+  ): Promise<UserType> {
+    return this.userService.assignTaskToUser(userId, taskId);
+  }
+
+  @Mutation(() => UserType)
+  async unassignTaskFromUser(
+    @Args('userId') userId: number,
+    @Args('taskId') taskId: number,
+  ): Promise<UserType> {
+    return this.userService.unassignTaskFromUser(userId, taskId);
+  }
+
+  @Query(() => UserType)
+  async findUserTasks(@Args('userId') telegramId: string): Promise<UserType> {
+    return this.userService.findUserTasks(telegramId);
   }
 
   @Query(() => UserType, { name: 'user' })

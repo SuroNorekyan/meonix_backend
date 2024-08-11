@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { TaskEntity } from '../../tasks/entities/task.entity';
 
 @ObjectType()
 export class UserType {
@@ -13,4 +14,7 @@ export class UserType {
 
   @Field()
   energy: number;
+
+  @Field(() => [TaskEntity])
+  tasks: TaskEntity[];
 }
