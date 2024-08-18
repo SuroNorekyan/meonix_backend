@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserInput } from './dto/create-user.input';
 import { UserType } from './types/user.type';
 import { UpdateEnergyInput } from './dto/update-energy.input';
+import { UpdateCoinsInput } from './dto/update-coins.input';
 
 @Resolver(() => UserType)
 export class UserResolver {
@@ -55,5 +56,21 @@ export class UserResolver {
     @Args('updateEnergyInput') updateEnergyInput: UpdateEnergyInput,
   ): Promise<UserType> {
     return this.userService.subtractEnergy(telegramId, updateEnergyInput);
+  }
+
+  @Mutation(() => UserType)
+  async addCoins(
+    @Args('telegramId') telegramId: string,
+    @Args('updateEnergyInput') updateCoinsInput: UpdateCoinsInput,
+  ): Promise<UserType> {
+    return this.userService.addCoins(telegramId, updateCoinsInput);
+  }
+
+  @Mutation(() => UserType)
+  async subtractCoins(
+    @Args('telegramId') telegramId: string,
+    @Args('updateEnergyInput') updateCoinsInput: UpdateCoinsInput,
+  ): Promise<UserType> {
+    return this.userService.subtractCoins(telegramId, updateCoinsInput);
   }
 }

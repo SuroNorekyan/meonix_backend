@@ -15,6 +15,9 @@ export class UserType {
   @Field()
   energy: number;
 
+  @Field()
+  coins: number;
+
   @Field(() => [TaskEntity])
   tasks: TaskEntity[];
 }

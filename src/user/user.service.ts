@@ -5,6 +5,7 @@ import { CreateUserInput } from './dto/create-user.input';
 import { UpdateEnergyInput } from './dto/update-energy.input';
 import { UserEntity } from './entities/user/user.entity';
 import { TaskService } from '../tasks/task.service';
+import { UpdateCoinsInput } from './dto/update-coins.input';
 
 @Injectable()
 export class UserService {
@@ -94,6 +95,30 @@ export class UserService {
       throw new Error('User not found');
     }
     user.energy -= updateEnergyInput.energy;
+    return this.userRepository.save(user);
+  }
+
+  async addCoins(
+    telegramId: string,
+    updateCoinsInput: UpdateCoinsInput,
+  ): Promise<UserEntity> {
+    const user = await this.findOne(telegramId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    user.coins += updateCoinsInput.coins;
+    return this.userRepository.save(user);
+  }
+
+  async subtractCoins(
+    telegramId: string,
+    updateCoinsInput: UpdateCoinsInput,
+  ): Promise<UserEntity> {
+    const user = await this.findOne(telegramId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    user.coins += updateCoinsInput.coins;
     return this.userRepository.save(user);
   }
 }

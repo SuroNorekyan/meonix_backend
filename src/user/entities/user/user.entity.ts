@@ -27,6 +27,10 @@ export class UserEntity {
   @Column({ default: 0 })
   energy: number;
 
+  @Field(() => Int)
+  @Column({ default: 0 })
+  coins: number;
+
   @Field(() => [TaskEntity])
   @ManyToMany(() => TaskEntity)
   @JoinTable()

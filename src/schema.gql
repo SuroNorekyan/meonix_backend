@@ -25,6 +25,7 @@ type UserType {
   username: String!
   telegramId: String!
   energy: Float!
+  coins: Float!
   tasks: [TaskEntity!]!
 }
 
@@ -39,6 +40,8 @@ type Mutation {
   unassignTaskFromUser(userId: Float!, taskId: Float!): UserType!
   addEnergy(telegramId: String!, updateEnergyInput: UpdateEnergyInput!): UserType!
   subtractEnergy(telegramId: String!, updateEnergyInput: UpdateEnergyInput!): UserType!
+  addCoins(telegramId: String!, updateEnergyInput: UpdateCoinsInput!): UserType!
+  subtractCoins(telegramId: String!, updateEnergyInput: UpdateCoinsInput!): UserType!
 }
 
 input CreateUserInput {
@@ -48,4 +51,8 @@ input CreateUserInput {
 
 input UpdateEnergyInput {
   energy: Int!
+}
+
+input UpdateCoinsInput {
+  coins: Int!
 }
